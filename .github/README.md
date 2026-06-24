@@ -28,19 +28,24 @@ tools** which I encourage you to check:
 
 ## How to use
 1. Create an empty GitHub repository. Do not initialize it.
-2. Download [the contribute.py script](https://github.com/Shpota/github-activity-generator/archive/master.zip) 
-and execute it passing the link on the created repository
+2. Download [the contribute.py script](https://github.com/Shpota/github-activity-generator-main/archive/master.zip) 
+   and execute it passing the link on the created repository
 ```sh
 python contribute.py --repository=git@github.com:user/repo.git
 ```
 Now you have a repository with lots of changes in your GitHub account.
 Note: it takes several minutes for GitHub to reindex your activity.
 
-## How it works
-The script initializes an empty git repository, creates a text file and starts 
-generating changes to the file for every day within the last year (0-20 commits 
-per day). Once the commits are generated it links the created repository with
-the remote repository and pushes the changes.
+## Web Canvas Designer
+
+An interactive web-based dashboard is included under the `web/` directory.
+
+- **Simulator Mode**: Visualizes randomized activity distributions in real-time as you adjust frequency, max commits, and date ranges.
+- **Canvas Designer**: Click and drag directly on the 53-week contribution grid to "paint" custom designs or text, then output precise instructions.
+
+To run it locally:
+1. Double-click [web/index.html](file:///Users/prabeshshah/Downloads/github-activity-generator-main/web/index.html) to open it directly in your browser, or start a local server (`python3 -m http.server 8888 --directory web`).
+2. Design your calendar, fill in your git configuration, copy the generated terminal command, and execute it!
 
 ## Customizations
 You can customize how often to commit and how many commits a day to make, etc.
@@ -54,6 +59,17 @@ Use `--no_weekends` option if you don't want to commit on weekends
 ```sh
 python contribute.py --no_weekends
 ```
+
+### Custom Dates & Drawings
+- Use `--dates` to generate commits on exact comma-separated dates:
+  ```sh
+  python contribute.py --dates=2026-05-01,2026-05-02,2026-05-03
+  ```
+- Use `--dates_file` to point to a file containing one date per line (format `YYYY-MM-DD`):
+  ```sh
+  python contribute.py --dates_file=dates.txt
+  ```
+
 If you do not set the `--repository` argument the script won't push the changes. 
 This way you can import the generated repository yourself.
 
